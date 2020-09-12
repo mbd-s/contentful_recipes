@@ -1,0 +1,9 @@
+language: ruby
+bundler_args: --jobs=2
+script:
+  - bundle-audit check --update
+  - bundle exec rails db:setup
+  - bundle exec rspec
+  - bundle exec rubocop
+services:
+  - postgresql
