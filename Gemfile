@@ -14,6 +14,8 @@ gem 'turbolinks', '~> 5.2'
 
 gem 'bootsnap', '~> 1.4', require: false
 
+gem 'contentful', '~> 2.15'
+
 group :development, :test do
   gem 'bundler-audit', '~> 0.7.0'
   gem 'byebug', '~> 11.1', platforms: %i[mri mingw x64_mingw]
