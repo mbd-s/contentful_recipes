@@ -1,0 +1,12 @@
+%p
+%h1{:style => "text-align:center"}= @recipe.title
+%p
+  = image_tag(@recipe.image_url, alt: @recipe.title, style: 'display: block; margin: auto; width: 60%')
+- if @recipe.tags
+  %p
+    %strong Tags:
+    = @recipe.tags.join(', ')
+%p
+  = @recipe.description
+
+= link_to 'Back', recipes_path
