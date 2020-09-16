@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class RecipesController < ApplicationController
+  include ApplicationHelper
+  before_action :set_recipes, only: %i[index]
   before_action :set_recipe, only: %i[show]
 
   def index
@@ -13,5 +15,16 @@ class RecipesController < ApplicationController
 
   def set_recipe
     @recipe = Recipe.find(params[:id])
+  end
+
+  def set_recipes
+    recipe_fields_collection = contentful.entries(content_type: 'recipe').map(&:fields)
+    load_or_create(recipe_fields_collection)
+  end
+
+  def load_or_create(recipe_fields_collection)
+    recipe_fields_collection.each do |fields_collection|
+      RecipeBuilder.new(fields_collection).perform
+    end
   end
 end
