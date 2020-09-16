@@ -3,6 +3,7 @@
 class RecipesController < ApplicationController
   include ApplicationHelper
   before_action :set_recipes, only: %i[index]
+  around_action :catch_not_found
   before_action :set_recipe, only: %i[show]
 
   def index
@@ -26,5 +27,11 @@ class RecipesController < ApplicationController
     recipe_fields_collection.each do |fields_collection|
       RecipeBuilder.new(fields_collection).perform
     end
+  end
+
+  def catch_not_found
+    yield
+  rescue ActiveRecord::RecordNotFound
+    redirect_to root_url
   end
 end
