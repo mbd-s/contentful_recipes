@@ -6,5 +6,6 @@ FactoryBot.define do
     image_url { 'https://example.com' }
     tags { ['tags'] }
     description { 'Description' }
+    chef
   end
 end

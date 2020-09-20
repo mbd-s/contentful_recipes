@@ -12,5 +12,6 @@ RSpec.describe 'recipes/show', type: :view do
     expect(rendered).to match(recipe.image_url)
     expect(rendered).to match(recipe.tags.join(', '))
     expect(rendered).to match(recipe.description)
+    expect(rendered).to match(recipe.chef.name)
   end
 end

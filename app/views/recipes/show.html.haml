@@ -8,5 +8,9 @@
     = @recipe.tags.join(', ')
 %p
   = @recipe.description
+  - if @recipe.chef
+    %p
+      %strong Chef:
+      = @recipe.chef.name
 
 = link_to 'Back', recipes_path
